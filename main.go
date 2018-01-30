@@ -41,115 +41,216 @@ func boom(w http.ResponseWriter, statusCode int, args ...interface{}) {
 	}
 }
 
-func BadRequest(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 400, msg...)
+// BadRequest responds with a 400 Bad Request error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func BadRequest(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 400, message...)
 }
 
-func Unathorized(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 401, msg...)
+// Unathorized responds with a 401 Unauthorized error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Unathorized(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 401, message...)
 }
 
-func PaymentRequired(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 402, msg...)
+// PaymentRequired responds with a 402 Payment Required error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func PaymentRequired(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 402, message...)
 }
 
-func Forbidden(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 403, msg...)
+// Forbidden responds with a 403 Forbidden error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Forbidden(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 403, message...)
 }
 
-func NotFound(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 404, msg...)
+// NotFound responds with a 404 Not Found error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func NotFound(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 404, message...)
 }
 
-func MethodNotAllowed(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 405, msg...)
+// MethodNotAllowed responds with a 405 Method Not Allowed error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func MethodNotAllowed(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 405, message...)
 }
 
-func NotAcceptable(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 406, msg...)
+// NotAcceptable responds with a 406 Not Acceptable error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func NotAcceptable(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 406, message...)
 }
 
-func ProxyAuthRequired(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 407, msg...)
+// ProxyAuthRequired responds with a 407 Proxy Authentication Required error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func ProxyAuthRequired(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 407, message...)
 }
 
-func ClientTimeout(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 408, msg...)
+// ClientTimeout responds with a 408 Request Time-out error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func ClientTimeout(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 408, message...)
 }
 
-func Conflict(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 409, msg...)
+// Conflict responds with a 409 Conflict error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Conflict(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 409, message...)
 }
 
-func ResourceGone(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 410, msg...)
+// ResourceGone responds with a 410 Gone error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func ResourceGone(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 410, message...)
 }
 
-func LengthRequired(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 411, msg...)
+// LengthRequired responds with a 411 Length Required error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func LengthRequired(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 411, message...)
 }
 
-func PreconditionFailed(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 412, msg...)
+// PreconditionFailed responds with a 412 Precondition Failed error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func PreconditionFailed(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 412, message...)
 }
 
-func EntityTooLarge(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 413, msg...)
+// EntityTooLarge responds with a 413 Request Entity Too Large error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func EntityTooLarge(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 413, message...)
 }
 
-func URITooLong(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 414, msg...)
+// URITooLong responds with a 414 Request-URI Too Large error
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func URITooLong(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 414, message...)
 }
 
-func UnsupportedMediaType(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 415, msg...)
+// UnsupportedMediaType responds with a 415 Unsupported Media Type error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func UnsupportedMediaType(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 415, message...)
 }
 
-func RangeNotSatisfiable(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 416, msg...)
+// RangeNotSatisfiable responds with a 416 Requested Range Not Satisfiable error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func RangeNotSatisfiable(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 416, message...)
 }
 
-func ExpectationFailed(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 417, msg...)
+// ExpectationFailed responds with a 417 Expectation Failed error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func ExpectationFailed(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 417, message...)
 }
 
-func Teapot(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 418, msg...)
+// Teapot responds with a 418 I'm a Teapot error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Teapot(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 418, message...)
 }
 
-func BadData(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 422, msg...)
+// BadData responds with a 422 Unprocessable Entity error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func BadData(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 422, message...)
 }
 
-func PreconditionRequired(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 428, msg...)
+// Locked responds with a 423 Locked error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Locked(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 423, message...)
 }
 
-func TooManyRequests(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 429, msg...)
+// PreconditionRequired responds with a 428 Precondition Required error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func PreconditionRequired(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 428, message...)
 }
 
-func Illegal(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 451, msg...)
+// TooManyRequests responds with a 429 Too Many Requests error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func TooManyRequests(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 429, message...)
 }
 
-// 5xx errors - make sure no error message is returned to client
-func BadImplementation(w http.ResponseWriter, msg ...interface{}) {
+// Illegal responds with a 451 Unavailable For Legal Reasons error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func Illegal(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 451, message...)
+}
+
+// Internal responds with a 500 Internal Server Error error.
+// Takes an optional message of either type string or type error
+// but, will always return a generic message in the response body.
+// This behaviour protects the developer from accidentally returning
+// sensitive data in the response during a panic.
+func Internal(w http.ResponseWriter, message ...interface{}) {
 	boom(w, 500)
 }
 
-func NotImplemented(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 501)
+// BadImplementation responds with a 500 Internal Server Error error. Alias for boom.Internal.
+// Takes an optional message of either type string or type error
+// but, will always return a generic message in the response body.
+// This behaviour protects the developer from accidentally returning
+// sensitive data in the response during a panic.
+func BadImplementation(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 500)
 }
 
-func BadGateway(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 502)
+// NotImplemented responds with a 501 Not Implemented error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func NotImplemented(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 501, message...)
 }
 
-func ServerUnavailable(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 503)
+// BadGateway responds with a 502 Bad Gateway error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func BadGateway(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 502, message...)
 }
 
-func GatewayTimeout(w http.ResponseWriter, msg ...interface{}) {
-	boom(w, 504)
+// ServerUnavailable .eturns a 503 Service Unavailable error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func ServerUnavailable(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 503, message...)
+}
+
+// GatewayTimeout responds with a 504 Gateway Time-out error.
+// Takes an optional message of either type string or type error,
+// which will be returned in the response body.
+func GatewayTimeout(w http.ResponseWriter, message ...interface{}) {
+	boom(w, 504, message...)
 }
