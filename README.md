@@ -6,7 +6,9 @@
 - `error`- the HTTP status message (e.g. 'Bad Request', 'Internal Server Error') derived from `statusCode`.
 - `message` - the error message which can be optionally set by the developer.
 
-All **boom** functions take a `http.ResponseWriter` as an argument which means **boom** should be compatible with any Golang http frameworks that also use `http.ResponseWriter`. 
+All **boom** functions take a `http.ResponseWriter` as an argument which means **boom** should be compatible with any Golang http frameworks that also use `http.ResponseWriter`.
+
+This library is inspired by the wonderful JavaScript library https://www.npmjs.com/package/boom.
 
 ### Install
 
