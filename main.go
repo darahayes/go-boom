@@ -11,22 +11,19 @@ type boomErr struct {
 	StatusCode int    `json:"statusCode"`
 }
 
-func boom(w http.ResponseWriter, statusCode int, msg ...interface{}) {
+func boom(w http.ResponseWriter, statusCode int, args ...interface{}) {
 
 	errorType := codes[statusCode]
-	var message string
+	message := errorType // should be same as errorType by default
 
-	if l := len(msg); l == 0 {
-		// no args were provided so set message to errorType
-		message = errorType
-	} else {
-		switch msg[0].(type) {
+	// determine if an error or string arg was passed in
+	// set the message accordingly
+	if l := len(args); l != 0 {
+		switch args[0].(type) {
 		case string:
-			message = msg[0].(string)
+			message = args[0].(string)
 		case error:
-			message = msg[0].(error).Error()
-		default:
-			message = errorType
+			message = args[0].(error).Error()
 		}
 	}
 
