@@ -28,18 +28,18 @@ import (
 package main
 
 import (
-  "fmt"
-  "net/http"
-  "github.com/darahayes/go-boom"
+	"fmt"
+	"net/http"
+	"github.com/darahayes/go-boom"
 )
 
 func myHandler(w http.ResponseWriter, r *http.Request) {
-  boom.NotFound(w, "Sorry, there's nothing here.")
+	boom.NotFound(w, "Sorry, there's nothing here.")
 }
 
 func main() {
-  http.HandleFunc("/", myHandler)
-  http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", myHandler)
+	http.ListenAndServe(":8080", nil)
 }
 ```
 
@@ -57,8 +57,8 @@ With this example, the response from the `/` endpoint would be:
 
 ```go
 func myHandler(w http.ResponseWriter, r *http.Request) {
-  err := errors.New("You shall not pass!")
-  boom.Unauthorized(w, err)
+	err := errors.New("You shall not pass!")
+	boom.Unauthorized(w, err)
 }
 ```
 
@@ -75,7 +75,7 @@ It's also possible to provide no error message at all:
 
 ```go
 func myHandler(w http.ResponseWriter, r *http.Request) {
-  boom.BadRequest(w)
+	boom.BadRequest(w)
 }
 ```
 
@@ -121,12 +121,12 @@ func myHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    router := mux.NewRouter().StrictSlash(true)
-    router.HandleFunc("/", myHandler)
-    
-    router.Use(boom.RecoverHandler)
-    
-    http.ListenAndServe(":8080", router)
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/", myHandler)
+	
+	router.Use(boom.RecoverHandler)
+	
+	http.ListenAndServe(":8080", router)
 }
 ```
 
