@@ -18,7 +18,7 @@ go get github.com/darahayes/go-boom
 
 ```go
 import (
-  "github.com/darahayes/go-boom"
+	"github.com/darahayes/go-boom"
 )
 ```
 
