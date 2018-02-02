@@ -146,10 +146,6 @@ In both examples above, a stack trace is printed in the server logs and the resp
 }
 ```
 
-## 4xx Errors
+## API Methods
 
-TODO: Document each function
-
-## 5xx Errors
-
-TODO: Document each function
+To see the full list of API methods check out the [documentation on godoc.org](https://godoc.org/github.com/darahayes/go-boom)
