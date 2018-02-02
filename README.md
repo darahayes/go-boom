@@ -12,6 +12,8 @@
 
 All **boom** functions take a `http.ResponseWriter` as an argument which means **boom** should be compatible with any Golang http frameworks that also use `http.ResponseWriter`.
 
+To see the full list of **boom** functions, check out the [documentation on godoc.org](https://godoc.org/github.com/darahayes/go-boom)
+
 This library is inspired by the wonderful JavaScript library https://www.npmjs.com/package/boom.
 
 ### Install
