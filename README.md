@@ -1,5 +1,9 @@
 # Boom
 
+[![Documentation](https://godoc.org/github.com/darahayes/go-boom?status.svg)](http://godoc.org/github.com/darahayes/go-boom)
+[![CircleCI](https://circleci.com/gh/darahayes/go-boom.svg?style=svg)](https://circleci.com/gh/darahayes/go-boom)
+[![Coverage Status](https://coveralls.io/repos/github/darahayes/go-boom/badge.svg?branch=master)](https://coveralls.io/github/darahayes/go-boom?branch=master)
+
 **boom** provides a set of functions for returning HTTP errors. Each function responds with a JSON object which includes the following properties:
 
 - `statusCode` - the HTTP status code.
