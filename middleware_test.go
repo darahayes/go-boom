@@ -79,3 +79,41 @@ func TestRecoverHandlerNoPanic(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestNotFoundHandler(t *testing.T) {
+
+	var boomResponse boomErr
+
+	handler := http.HandlerFunc(NotFoundHandler)
+
+	ts := httptest.NewServer(handler)
+	defer ts.Close()
+
+	res, err := http.Get(ts.URL)
+
+	if err != nil {
+		t.Errorf("Request to server failed %v", err)
+	}
+
+	if res != nil {
+		defer res.Body.Close()
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err := json.Unmarshal(body, &boomResponse); err != nil {
+		t.Errorf("response body was not valid JSON: %v", err)
+	}
+
+	expectedErrorType := "Not Found"
+	expectedMessage := expectedErrorType
+	expectedCode := 404
+
+	if boomResponse.ErrorType != expectedErrorType || boomResponse.Message != expectedMessage || boomResponse.StatusCode != expectedCode {
+		t.Fail()
+	}
+
+	if res.StatusCode != expectedCode {
+		t.Errorf("handler returned wrong status code: got %v want %v", res.StatusCode, expectedCode)
+	}
+}
