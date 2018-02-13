@@ -25,3 +25,9 @@ func RecoverHandler(next http.Handler) http.Handler {
 
 	return http.HandlerFunc(fn)
 }
+
+// NotFoundHandler handler function that uses boom.NotFound() to create a structured 404 response.
+// Can be used to configure routers that accept a handler for 404 cases
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	NotFound(w)
+}
