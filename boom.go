@@ -90,13 +90,11 @@ func boom(w http.ResponseWriter, statusCode int, args ...interface{}) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(statusCode)
 
-	err := json.NewEncoder(w).Encode(boomErr{
+	errString, _ := json.Marshal(boomErr{
 		errorType,
 		message,
 		statusCode,
 	})
 
-	if err != nil {
-		panic(err)
-	}
+	http.Error(w, string(errString), statusCode)
 }
