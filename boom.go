@@ -88,7 +88,6 @@ func boom(w http.ResponseWriter, statusCode int, args ...interface{}) {
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(statusCode)
 
 	errString, _ := json.Marshal(boomErr{
 		errorType,
