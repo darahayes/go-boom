@@ -67,7 +67,7 @@ With this example, the response from the `/` endpoint would be:
 ```go
 func myHandler(w http.ResponseWriter, r *http.Request) {
 	err := errors.New("You shall not pass!")
-	boom.Unauthorized(w, err)
+	boom.Unathorized(w, err)
 }
 ```
 
@@ -75,7 +75,7 @@ and the response:
 
 ```json
 {
-  "error": "Unauthorized",
+  "error": "Unathorized",
   "message": "You shall not pass!",
   "statusCode": 401
 }
