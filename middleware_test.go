@@ -11,7 +11,7 @@ import (
 
 func TestRecoverHandlerPanic(t *testing.T) {
 
-	var boomResponse boomErr
+	var boomResponse Err
 
 	fn := http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		panic("This is a purposeful panic!")
@@ -82,7 +82,7 @@ func TestRecoverHandlerNoPanic(t *testing.T) {
 
 func TestNotFoundHandler(t *testing.T) {
 
-	var boomResponse boomErr
+	var boomResponse Err
 
 	handler := http.HandlerFunc(NotFoundHandler)
 

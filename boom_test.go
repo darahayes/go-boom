@@ -3,19 +3,25 @@ package boom
 import (
 	"encoding/json"
 	"errors"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 )
 
+func renderBoom(w http.ResponseWriter, statusCode int, args ...interface{}) {
+	boomed := Boomify(statusCode, args...)
+	Render(w, boomed)
+}
+
 func TestBoomDefault(t *testing.T) {
 	rr := httptest.NewRecorder()
 
-	var boomResponse boomErr
+	var boomResponse Err
 	statusCode := 404
 	errorType := codes[statusCode]
 	message := errorType
 
-	boom(rr, statusCode)
+	renderBoom(rr, statusCode)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -33,12 +39,12 @@ func TestBoomDefault(t *testing.T) {
 func TestBoomCustomMessage(t *testing.T) {
 	rr := httptest.NewRecorder()
 
-	var boomResponse boomErr
+	var boomResponse Err
 	statusCode := 404
 	errorType := codes[statusCode]
 	message := "This is a test message"
 
-	boom(rr, statusCode, message)
+	renderBoom(rr, statusCode, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -56,12 +62,12 @@ func TestBoomCustomMessage(t *testing.T) {
 func TestBoomCustomErrorMessage(t *testing.T) {
 	rr := httptest.NewRecorder()
 
-	var boomResponse boomErr
+	var boomResponse Err
 	statusCode := 404
 	errorType := codes[statusCode]
 	message := errors.New("This is a message of type error")
 
-	boom(rr, statusCode, message)
+	renderBoom(rr, statusCode, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -79,20 +85,20 @@ func TestBoomCustomErrorMessage(t *testing.T) {
 func TestBoomHandlesMultipleMessagesWithNoFailure(t *testing.T) {
 	rr := httptest.NewRecorder()
 
-	var boomResponse boomErr
+	var boomResponse Err
 	statusCode := 404
-	errorType := codes[statusCode]
+	// errorType := codes[statusCode]
 	m1 := "This is a test message"
 	m2 := "This is another test message"
 	m3 := "This is a third test message"
 
-	boom(rr, statusCode, m1, m2, m3)
+	renderBoom(rr, statusCode, m1, m2, m3)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
 	}
 
-	if boomResponse.ErrorType != errorType || boomResponse.Message != m1 || boomResponse.StatusCode != statusCode {
+	if boomResponse.StatusCode != statusCode {
 		t.Fail()
 	}
 
