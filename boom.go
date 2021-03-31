@@ -65,35 +65,47 @@ var codes = map[int]string{
 	511: "Network Authentication Required",
 }
 
-type boomErr struct {
-	ErrorType  string `json:"error"`
-	Message    string `json:"message"`
-	StatusCode int    `json:"statusCode"`
+// Err holds information about the error to be returned to the client
+// during a renderBoom function call or elsewhere
+type Err struct {
+	ErrorType  string             `json:"error"`
+	Message    string             `json:"message"`
+	StatusCode int                `json:"statusCode"`
+	Data       *map[string]string `json:"data,omitempty"`
 }
 
-func boom(w http.ResponseWriter, statusCode int, args ...interface{}) {
-
+func Boomify(statusCode int, args ...interface{}) Err {
 	errorType := codes[statusCode]
 	message := errorType // should be same as errorType by default
 
 	// determine if an error or string arg was passed in
 	// set the message accordingly
+	var data *map[string]string
 	if l := len(args); l != 0 {
-		switch args[0].(type) {
-		case string:
-			message = args[0].(string)
-		case error:
-			message = args[0].(error).Error()
+		for _, arg := range args {
+			switch arg.(type) {
+			case string:
+				message = arg.(string)
+			case error:
+				message = arg.(error).Error()
+			case map[string]string:
+				dataRaw := arg.(map[string]string)
+				data = &dataRaw
+			}
 		}
 	}
-
-	errString, _ := json.Marshal(boomErr{
+	return Err{
 		errorType,
 		message,
 		statusCode,
-	})
+		data,
+	}
+}
+
+func Render(w http.ResponseWriter, boomed Err) {
+	errString, _ := json.Marshal(boomed)
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(statusCode)
+	w.WriteHeader(boomed.StatusCode)
 	w.Write(errString)
 }

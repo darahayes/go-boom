@@ -16,9 +16,9 @@ func TestBadRequest(t *testing.T) {
 	errorType := "Bad Request"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	BadRequest(rr, message)
+	RenderBadRequest(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -43,9 +43,9 @@ func TestUnathorized(t *testing.T) {
 	errorType := "Unauthorized"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Unathorized(rr, message)
+	RenderUnathorized(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -70,9 +70,9 @@ func TestPaymentRequired(t *testing.T) {
 	errorType := "Payment Required"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	PaymentRequired(rr, message)
+	RenderPaymentRequired(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -97,9 +97,9 @@ func TestForbidden(t *testing.T) {
 	errorType := "Forbidden"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Forbidden(rr, message)
+	RenderForbidden(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -124,9 +124,9 @@ func TestNotFound(t *testing.T) {
 	errorType := "Not Found"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	NotFound(rr, message)
+	RenderNotFound(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -151,9 +151,9 @@ func TestMethodNotAllowed(t *testing.T) {
 	errorType := "Method Not Allowed"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	MethodNotAllowed(rr, message)
+	RenderMethodNotAllowed(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -178,9 +178,9 @@ func TestNotAcceptable(t *testing.T) {
 	errorType := "Not Acceptable"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	NotAcceptable(rr, message)
+	RenderNotAcceptable(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -205,9 +205,9 @@ func TestProxyAuthRequired(t *testing.T) {
 	errorType := "Proxy Authentication Required"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	ProxyAuthRequired(rr, message)
+	RenderProxyAuthRequired(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -232,9 +232,9 @@ func TestClientTimeout(t *testing.T) {
 	errorType := "Request Time-out"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	ClientTimeout(rr, message)
+	RenderRequestTimeout(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -259,9 +259,9 @@ func TestConflict(t *testing.T) {
 	errorType := "Conflict"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Conflict(rr, message)
+	RenderConflict(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -286,9 +286,9 @@ func TestResourceGone(t *testing.T) {
 	errorType := "Gone"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	ResourceGone(rr, message)
+	RenderGone(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -313,9 +313,9 @@ func TestLengthRequired(t *testing.T) {
 	errorType := "Length Required"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	LengthRequired(rr, message)
+	RenderLengthRequired(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -340,9 +340,9 @@ func TestPreconditionFailed(t *testing.T) {
 	errorType := "Precondition Failed"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	PreconditionFailed(rr, message)
+	RenderPreconditionFailed(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -367,9 +367,9 @@ func TestEntityTooLarge(t *testing.T) {
 	errorType := "Request Entity Too Large"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	EntityTooLarge(rr, message)
+	RenderEntityTooLarge(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -394,9 +394,9 @@ func TestURITooLong(t *testing.T) {
 	errorType := "Request-URI Too Large"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	URITooLong(rr, message)
+	RenderURITooLong(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -421,9 +421,9 @@ func TestUnsupportedMediaType(t *testing.T) {
 	errorType := "Unsupported Media Type"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	UnsupportedMediaType(rr, message)
+	RenderUnsupportedMediaType(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -448,9 +448,9 @@ func TestRangeNotSatisfiable(t *testing.T) {
 	errorType := "Requested Range Not Satisfiable"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	RangeNotSatisfiable(rr, message)
+	RenderRangeNotSatisfiable(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -475,9 +475,9 @@ func TestExpectationFailed(t *testing.T) {
 	errorType := "Expectation Failed"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	ExpectationFailed(rr, message)
+	RenderExpectationFailed(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -502,9 +502,9 @@ func TestTeapot(t *testing.T) {
 	errorType := "I'm a teapot"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Teapot(rr, message)
+	RenderTeapot(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -529,9 +529,9 @@ func TestBadData(t *testing.T) {
 	errorType := "Unprocessable Entity"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	BadData(rr, message)
+	RenderUnprocessableEntity(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -556,9 +556,9 @@ func TestLocked(t *testing.T) {
 	errorType := "Locked"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Locked(rr, message)
+	RenderLocked(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -583,9 +583,9 @@ func TestPreconditionRequired(t *testing.T) {
 	errorType := "Precondition Required"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	PreconditionRequired(rr, message)
+	RenderPreconditionRequired(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -610,9 +610,9 @@ func TestTooManyRequests(t *testing.T) {
 	errorType := "Too Many Requests"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	TooManyRequests(rr, message)
+	RenderTooManyRequests(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -637,9 +637,9 @@ func TestIllegal(t *testing.T) {
 	errorType := "Unavailable For Legal Reasons"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Illegal(rr, message)
+	RenderIllegal(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -666,9 +666,9 @@ func TestInternal(t *testing.T) {
 	errorType := "Internal Server Error"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Internal(rr, message)
+	RenderInternal(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -696,9 +696,9 @@ func TestBadImplementation(t *testing.T) {
 	errorType := "Internal Server Error"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	Internal(rr, message)
+	RenderBadImplementation(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -724,9 +724,9 @@ func TestNotImplemented(t *testing.T) {
 	errorType := "Not Implemented"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	NotImplemented(rr, message)
+	RenderNotImplemented(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -751,9 +751,9 @@ func TestBadGateway(t *testing.T) {
 	errorType := "Bad Gateway"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	BadGateway(rr, message)
+	RenderBadGateway(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -778,9 +778,9 @@ func TestServerUnavailable(t *testing.T) {
 	errorType := "Service Unavailable"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	ServerUnavailable(rr, message)
+	RenderServiceUnavailable(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
@@ -805,9 +805,9 @@ func TestGatewayTimeout(t *testing.T) {
 	errorType := "Gateway Time-out"
 	message := "This is a custom messsage"
 
-	var boomResponse boomErr
+	var boomResponse Err
 
-	GatewayTimeout(rr, message)
+	RenderGatewayTimeout(rr, message)
 
 	if err := json.Unmarshal(rr.Body.Bytes(), &boomResponse); err != nil {
 		t.Errorf("response body was not valid JSON: %v", err)
